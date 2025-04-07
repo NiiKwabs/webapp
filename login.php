@@ -4,6 +4,13 @@ include "db.php";
 
 $login_error = '';
 
+// Check if the user is already logged in
+if (isset($_SESSION['username'])) {
+    $welcome_message = "Welcome to the Management System! ";
+} else {
+    $welcome_message = '';
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -101,11 +108,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             font-size: 14px;
             margin: 10px 0;
         }
+
+        .welcome-message {
+            color: green;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="login-box">
+    <!-- Display welcome message if logged in -->
+    <?php if ($welcome_message) echo "<div class='welcome-message'>$welcome_message</div>"; ?>
+    
     <h2>Login</h2>
     <?php if ($login_error) echo "<div class='error'>$login_error</div>"; ?>
     <form method="POST">
