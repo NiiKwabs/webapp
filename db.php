@@ -5,13 +5,9 @@
     $db = "schmanagement";
 
     $conn = mysqli_connect($host, $user, $pass, $db);
-    if ($conn)
-    {
-        echo "Connection Successful";
-    }
-    else
-    {
-        echo "Connection Failed";
+
+     if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
     
