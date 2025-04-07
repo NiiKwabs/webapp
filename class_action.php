@@ -19,6 +19,6 @@ if (isset($_POST['delete'])) {
     $conn->query("DELETE FROM classes WHERE id=$id");
 }
 
-header("Location: classes.php");
+header("Location: index.php");
 exit();
 ?>
